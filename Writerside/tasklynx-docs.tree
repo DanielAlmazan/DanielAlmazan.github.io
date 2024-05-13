@@ -7,9 +7,31 @@
                   start-page="Home.md">
 
     <toc-element topic="Home.md">
-        <toc-element topic="Trabajo.md"/>
-        <toc-element topic="Trabajador.md"/>
-        <toc-element topic="TrabajadorView.md"/>
-        <toc-element topic="Tutorial.md"/>
+        <toc-element topic="API-Index.md">
+
+            <toc-element topic="Trabajo.md">
+                <!-- <toc-element topic="TrabajoView.md"/> -->
+            </toc-element>
+
+            <toc-element topic="Trabajador.md">
+                <toc-element topic="TrabajadorView.md"/>
+            </toc-element>
+
+            <toc-element topic="Tutorial.md"/>
+
+        </toc-element>
+
+        <toc-element topic="Business-Index.md">
+            <!-- <toc-element topic="BusinessTasks.md"/> -->
+        </toc-element>
+
+        <toc-element topic="Mobile-Index.md">
+
+        </toc-element>
+
+        <toc-element topic="Nest-Hotel-Index.md">
+
+        </toc-element>
+
     </toc-element>
 </instance-profile>
