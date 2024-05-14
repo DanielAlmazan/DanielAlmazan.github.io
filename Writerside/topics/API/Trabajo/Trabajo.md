@@ -337,7 +337,7 @@
         <code-block lang="json">
             {
               "errorsList": [
-                "No se pudo editar, el trabajador con ID 'J020' no existe en la base de datos"
+                "No se pudo editar, el trabajo con id 'J020' no existe en la base de datos"
               ],
               "error": true
             }
