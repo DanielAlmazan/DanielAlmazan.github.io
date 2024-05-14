@@ -128,129 +128,133 @@
 > - tiempo: duration of the task
 > - idTrabajador: worker assigned
 
-**Successful body example**
+<tabs>
+    <tab title="Successful body">
+        <code-block lang="json">
+            {
+              "codTrabajo": "J007",
+              "categoria": "Pintura",
+              "descripcion": "Pintar las paredes",
+              "fecIni": "2024-01-09",
+              "prioridad": 4
+            }
+        </code-block>
+    </tab>
+    <tab title="Response">
+        <code-block lang="json">
+            {
+              "result": {
+                "codTrabajo": "J007",
+                "categoria": "Pintura",
+                "descripcion": "Pintar las paredes",
+                "fecIni": "2024-01-09",
+                "fecFin": null,
+                "tiempo": null,
+                "idTrabajador": null,
+                "prioridad": 4
+              },
+              "error": false
+            }
+        </code-block>
+    </tab>
+</tabs>
 
-```json
-{
-  "codTrabajo": "J007",
-  "categoria": "Pintura",
-  "descripcion": "Pintar las paredes",
-  "fecIni": "2024-01-09",
-  "prioridad": 4
-}
-```
+<tabs>
+    <tab title="Other successful body">
+        <code-block lang="json">
+            {
+              "codTrabajo": "J008",
+              "categoria": "Pintura",
+              "descripcion": "Pintar las paredes",
+              "fecIni": "2024-01-09",
+              "fecFin": "2024-01-11",
+              "tiempo": 8.5,
+              "idTrabajador": {
+                "idTrabajador": "T001",
+                "dni": "12345678A",
+                "nombre": "Pepe",
+                "apellidos": "Gomez",
+                "especialidad": "Fontanería",
+                "contraseña": "123",
+                "email": "wefwefesadf.com"
+              },
+              "prioridad": 4
+            }
+        </code-block>
+    </tab>
+    <tab title="Response">
+        <code-block lang="json">
+            {
+              "result": {
+                "codTrabajo": "J008",
+                "categoria": "Pintura",
+                "descripcion": "Pintar las paredes",
+                "fecIni": "2024-01-09",
+                "fecFin": "2024-01-11",
+                "tiempo": 8.5,
+                "idTrabajador": {
+                  "idTrabajador": "T001",
+                  "dni": "12345678A",
+                  "nombre": "Pepe",
+                  "apellidos": "García",
+                  "especialidad": "Fontaneria",
+                  "contraseña": "123",
+                  "email": "wefwefewf@ergerg.com"
+                },
+                "prioridad": 4
+              },
+              "error": false
+            }
+        </code-block>
+    </tab>
+</tabs>
 
-**Response**
+<tabs>
+    <tab title="Error body">
+        <code-block lang="json">
+            {
+              "codTrabajo": "J009",
+              "fecIni": "2024-01-09",
+              "prioridad": 4
+            }
+        </code-block>
+    </tab>
+    <tab title="Response">
+        <code-block lang="json">
+            {
+              "errorsList": [
+                "La categoría no puede estar vacía",
+                "La descripción no puede estar vacía"
+              ],
+              "error": true
+            }
+        </code-block>
+    </tab>
+</tabs>
 
-```json
-{
-  "result": {
-    "codTrabajo": "J007",
-    "categoria": "Pintura",
-    "descripcion": "Pintar las paredes",
-    "fecIni": "2024-01-09",
-    "fecFin": null,
-    "tiempo": null,
-    "idTrabajador": null,
-    "prioridad": 4
-  },
-  "error": false
-}
-```
-
-**Other successful body example**
-
-```json
-{
-  "codTrabajo": "J008",
-  "categoria": "Pintura",
-  "descripcion": "Pintar las paredes",
-  "fecIni": "2024-01-09",
-  "fecFin": "2024-01-11",
-  "tiempo": 8.5,
-  "idTrabajador": {
-    "idTrabajador": "T001",
-    "dni": "12345678A",
-    "nombre": "Pepe",
-    "apellidos": "Gomez",
-    "especialidad": "Fontanería",
-    "contraseña": "123",
-    "email": "wefwefesadf.com"
-  },
-  "prioridad": 4
-}
-```
-
-**Response**
-
-```json
-{
-  "result": {
-    "codTrabajo": "J008",
-    "categoria": "Pintura",
-    "descripcion": "Pintar las paredes",
-    "fecIni": "2024-01-09",
-    "fecFin": "2024-01-11",
-    "tiempo": 8.5,
-    "idTrabajador": {
-      "idTrabajador": "T001",
-      "dni": "12345678A",
-      "nombre": "Pepe",
-      "apellidos": "García",
-      "especialidad": "Fontaneria",
-      "contraseña": "123",
-      "email": "wefwefewf@ergerg.com"
-    },
-    "prioridad": 4
-  },
-  "error": false
-}
-```
-
-**Error body example**
-
-```json
-{
-  "codTrabajo": "J009",
-  "fecIni": "2024-01-09",
-  "prioridad": 4
-}
-```
-
-**Response**
-
-```json
-{
-  "errorsList": [
-    "La categoría no puede estar vacía",
-    "La descripción no puede estar vacía"
-  ],
-  "error": true
-}
-```
-
-**Other error body example**
-
-```json
-{
-  "codTrabajo": "J008",
-  "categoria": "Pintura",
-  "descripcion": "Pintar las paredes",
-  "fecIni": "2024-01-09",
-  "prioridad": 4
-}
-```
-
-**Response**
-
-```json
-{
-  "errorsList": [
-    "El trabajo con id 'J008' ya existe en la base de datos"
-  ],
-  "error": true
-}
-```
+<tabs>
+    <tab title="Other error body">
+        <code-block lang="json">
+            {
+              "codTrabajo": "J008",
+              "categoria": "Pintura",
+              "descripcion": "Pintar las paredes",
+              "fecIni": "2024-01-09",
+              "prioridad": 4
+            }
+        </code-block>
+    </tab>
+    <tab title="Response">
+        <code-block lang="json">
+            {
+              "errorsList": [
+                "El trabajo con id 'J008' ya existe en la base de datos"
+              ],
+              "error": true
+            }
+        </code-block>
+    </tab>
+</tabs>
 
 ***
 
