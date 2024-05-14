@@ -264,77 +264,86 @@
 > If the worker does not exist, it will return an error message.  
 > If any of the fields are empty or invalid, it will return an error message with the list of errors.
 
-**Successful body example, we add an assigned worker**
-> /api/trabajos/J007
+<tabs>
+    <tab title="Successful body">
+        <tip>
+            /api/trabajos/J007
+            <p>We add an assigned worker</p>
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "codTrabajo": "J007",
+              "categoria": "Pintura",
+              "descripcion": "Pintar las paredes",
+              "fecIni": "2024-01-09",
+              "prioridad": 4,
+              "idTrabajador": {
+                "idTrabajador": "T001",
+                "dni": "12345678A",
+                "nombre": "Pepe",
+                "apellidos": "García",
+                "especialidad": "Fontaneria",
+                "contraseña": "123",
+                "email": "wefwefewf@ergerg.com"
+              }
+            }
+        </code-block>
+    </tab>
+    <tab title="Response">
+        <code-block lang="json">
+            {
+              "result": {
+                "codTrabajo": "J007",
+                "categoria": "Pintura",
+                "descripcion": "Pintar las paredes",
+                "fecIni": "2024-01-09",
+                "fecFin": null,
+                "tiempo": null,
+                "idTrabajador": {
+                  "idTrabajador": "T001",
+                  "dni": "12345678A",
+                  "nombre": "Pepe",
+                  "apellidos": "García",
+                  "especialidad": "Fontaneria",
+                  "contraseña": "123",
+                  "email": "wefwefewf@ergerg.com"
+                },
+                "prioridad": 4
+              },
+              "error": false
+            }
+        </code-block>
+    </tab>
+</tabs>
 
-```json
-{
-  "codTrabajo": "J007",
-  "categoria": "Pintura",
-  "descripcion": "Pintar las paredes",
-  "fecIni": "2024-01-09",
-  "prioridad": 4,
-  "idTrabajador": {
-    "idTrabajador": "T001",
-    "dni": "12345678A",
-    "nombre": "Pepe",
-    "apellidos": "García",
-    "especialidad": "Fontaneria",
-    "contraseña": "123",
-    "email": "wefwefewf@ergerg.com"
-  }
-}
-```
-
-**Response**
-
-```json
-{
-  "result": {
-    "codTrabajo": "J007",
-    "categoria": "Pintura",
-    "descripcion": "Pintar las paredes",
-    "fecIni": "2024-01-09",
-    "fecFin": null,
-    "tiempo": null,
-    "idTrabajador": {
-      "idTrabajador": "T001",
-      "dni": "12345678A",
-      "nombre": "Pepe",
-      "apellidos": "García",
-      "especialidad": "Fontaneria",
-      "contraseña": "123",
-      "email": "wefwefewf@ergerg.com"
-    },
-    "prioridad": 4
-  },
-  "error": false
-}
-```
-
-**Error body example**
-> /api/trabajos/J020
-
-```json
-{
-  "codTrabajo": "J020",
-  "categoria": "Pintura",
-  "descripcion": "Pintar las paredes",
-  "fecIni": "2024-01-09",
-  "prioridad": 4
-}
-```
-
-**Response**
-
-```json
-{
-  "errorsList": [
-    "No se pudo editar, el trabajador con ID 'J020' no existe en la base de datos"
-  ],
-  "error": true
-}
-```
+<tabs>
+    <tab title="Error body">
+        <tip>
+            /api/trabajos/J020
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "codTrabajo": "J020",
+              "categoria": "Pintura",
+              "descripcion": "Pintar las paredes",
+              "fecIni": "2024-01-09",
+              "prioridad": 4
+            }
+        </code-block>
+    </tab>
+    <tab title="Response">
+        <code-block lang="json">
+            {
+              "errorsList": [
+                "No se pudo editar, el trabajador con ID 'J020' no existe en la base de datos"
+              ],
+              "error": true
+            }
+        </code-block>
+    </tab>
+</tabs>
 
 ***
 
@@ -343,21 +352,28 @@
 > Delete a task by its ID. Returns a response without errors.  
 > If the task does not exist, it will return an error message.
 
-**Successfull response example**
-> /api/trabajos/J008
-
-```json
-{
-  "error": false
-}
-```
-
-**Non-existent worker response example**
-> /api/trabajos/J020
-
-```json
-{
-  "errorMessage": "El trabajo con id 'J020' no existe en la base de datos",
-  "error": true
-}
-```
+<tabs>
+    <tab title="Successfull response">
+        <tip>
+            /api/trabajos/J008
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "error": false
+            }
+        </code-block>
+    </tab>
+    <tab title="Non-existent task response">
+        <tip>
+            /api/trabajos/J020
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "errorMessage": "El trabajo con id 'J020' no existe en la base de datos",
+              "error": true
+            }
+        </code-block>
+    </tab>
+</tabs>
