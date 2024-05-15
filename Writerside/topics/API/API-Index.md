@@ -6,32 +6,50 @@
 
 [DanielAlmazan]: https://github.com/DanielAlmazan
 
-[HotelNest]: https://github.com/DanielAlmazan/hotel-nest
-[TaskLynxFX]: https://github.com/DanielAlmazan/TaskLynx-JavaFX
+[Nest Hotel]: https://github.com/DanielAlmazan/hotel-nest
 
+[TaskLynx Business]: https://github.com/DanielAlmazan/TaskLynx-JavaFX
+
+[TaskLynx API]: https://github.com/DanielAlmazan/TaskLynx-SpringBoot
+
+[TaskLynx Mobile]: https://github.com/DanielAlmazan/TaskLynx-Mobile
 
 # API – Index
 
 ![TaskLynx-API-oval-logo.svg](TaskLynx-API-oval-logo.svg){width=300}
 
-## Introducción
+## Introduction
 
-TaskLynx es un sistema compuesto por TaskLynx Api, TaskLynx Business y TaskLynx Mobile.  
-TaskLynx Api es una API REST que permite la comunicación entre TaskLynx Business y TaskLynx Mobile.
+[TaskLynx API] is a REST API that allows communication between [TaskLynx Business] and [TaskLynx Mobile].
 
-## Tecnologías
+## Technologies
 
 - Java 21
 - Spring Boot 2.5.4
 - Apache Maven 3.9.6
 - PostgreSQL
 
-## Diagrama Entidad-Relación
+## Entity-Relationship Diagram
 
 ```plantuml
 @startuml
 
-!theme lightgray
+!theme vibrant
+skinparam DefaultFontColor white
+skinparam ArrowFontColor black
+skinparam class {
+  BackgroundColor #012234-005b7b
+  HeaderBackgroundColor #012234
+}
+skinparam interface {
+  BackgroundColor #18181A
+}
+skinparam enum {
+  BackgroundColor #18181A
+}
+skinparam package {
+  BackgroundColor #18181A
+}
 
 entity "trabajador" as trabajador {
   dni: varchar(9)
@@ -52,20 +70,33 @@ id_trabajador: varchar(5)
 prioridad: numeric(1)
 cod_trabajo: varchar(5)
 }
-trabajador ||--o{ trabajo : "id_trabajador"
+trabajador ||--o{ trabajo : "tiene"
 @enduml
 ```
 
-
-
-## Diagrama de Clases
+## Class Diagram
 
 ```plantuml
 @startuml
 
-!theme lightgray
+!theme metal
 top to bottom direction
 skinparam linetype ortho
+skinparam DefaultFontColor white
+skinparam ArrowFontColor black
+skinparam class {
+  BackgroundColor #012234-005b7b
+  HeaderBackgroundColor #012234
+}
+skinparam interface {
+  BackgroundColor #18181A
+}
+skinparam enum {
+  BackgroundColor #18181A
+}
+skinparam package {
+  BackgroundColor #18181A
+}
 
 interface ITrabajadorDAO << interface >> {
   + findByNameAndPass(String, String): Trabajador
@@ -233,35 +264,64 @@ class TrabajoViewController {
   + nuevoTrabajo(Model): String
 }
 
-Trabajador                  "1" *-[#595959,plain]-> "trabajos\n*" Trabajo
-TrabajadorServices          "1" *-[#595959,plain]-> "trabajadorDAO\n1" ITrabajadorDAO     
-TrabajadorServices           -[#008200,dashed]-^  ITrabajadorService
-TrabajadoresController      "1" *-[#595959,plain]-> "trabajadorService\n1" ITrabajadorService         
-TrabajadoresController      "1" *-[#595959,plain]-> "trabajoService\n1" ITrabajoService      
-TrabajadoresViewController  "1" *-[#595959,plain]-> "trabajadorServices\n1" TrabajadorServices          
-Trabajo                     "1" *-[#595959,plain]-> "idTrabajador\n1" Trabajador    
-TrabajoController           "1" *-[#595959,plain]-> "trabajoService\n1" ITrabajoService      
-TrabajoServices             "1" *-[#595959,plain]-> "trabajadorDAO\n1" ITrabajadorDAO     
-TrabajoServices             "1" *-[#595959,plain]-> "trabajoDAO\n1" ITrabajoDAO  
-TrabajoServices              -[#008200,dashed]-^  ITrabajoService
-TrabajoViewController       "1" *-[#595959,plain]-> "trabajadorServices\n1" TrabajadorServices          
-TrabajoViewController       "1" *-[#595959,plain]-> "trabajoServices\n1" TrabajoServices       
+Trabajador                  "1" *-[#000000,plain]->\
+ "trabajos\n*" Trabajo
+ 
+TrabajadorServices          "1" *-[#000000,plain]->\
+ "trabajadorDAO\n1" ITrabajadorDAO
+ 
+TrabajadorServices           -[#008200,dashed]-^ \
+ ITrabajadorService
+ 
+TrabajadoresController      "1" *-[#000000,plain]->\
+ "trabajadorService\n1" ITrabajadorService
+ 
+TrabajadoresController      "1" *-[#000000,plain]->\
+ "trabajoService\n1" ITrabajoService
+ 
+TrabajadoresViewController  "1" *-[#000000,plain]->\
+ "trabajadorServices\n1" TrabajadorServices
+ 
+Trabajo                     "1" *-[#000000,plain]->\
+ "idTrabajador\n1" Trabajador
+ 
+TrabajoController           "1" *-[#000000,plain]->\
+ "trabajoService\n1" ITrabajoService
+ 
+TrabajoServices             "1" *-[#000000,plain]->\
+ "trabajadorDAO\n1" ITrabajadorDAO
+ 
+TrabajoServices             "1" *-[#000000,plain]->\
+ "trabajoDAO\n1" ITrabajoDAO
+ 
+TrabajoServices              -[#008200,dashed]-^\
+  ITrabajoService
+  
+TrabajoViewController       "1" *-[#000000,plain]-> \
+"trabajadorServices\n1" TrabajadorServices
+
+TrabajoViewController       "1" *-[#000000,plain]-> \
+"trabajoServices\n1" TrabajoServices
+
 @enduml
 ```
 
 ## Authors
 
 ### TRABAJADOR CRUD:
-![Aitor Moreno Iborra](https://avatars.githubusercontent.com/u/119342012?v=4)
+
+![Aitor Moreno Iborra](https://avatars.githubusercontent.com/u/119342012?v=4) {width="80"}
 
 [Aitor Moreno Iborra][LtVish]
 
 ### TRABAJO CRUD:
+
+![Miguel Collado](https://avatars.githubusercontent.com/u/114687157?v=4) {width="80"}
+
 [Miguel Collado][MiguelColl]
 
-![Miguel Collado](https://avatars.githubusercontent.com/u/114687157?v=4)
-
 ### API Development:
-![Daniel Enrique Almazán Sellés](https://avatars.githubusercontent.com/u/114589538?v=4)
+
+![Daniel Enrique Almazán Sellés](https://avatars.githubusercontent.com/u/114589538?v=4) {width="80"}
 
 [Daniel Enrique Almazán Sellés][DanielAlmazan]
