@@ -1,8 +1,3 @@
-# Trabajador
-
-## Model
-
-```plantuml
 @startuml
 !theme metal
 skinparam class {
@@ -21,10 +16,9 @@ skinparam package {
 skinparam DefaultFontColor white
 
 class Trabajador {
-  + Trabajador(String, String, String, String, String, String): 
-  + Trabajador(): 
-  + Trabajador(String, String, String, String, String, String, String\
-  ): 
+  + Trabajador(String, String, String, String, String, String):
+  + Trabajador():
+  + Trabajador(String, String, String, String, String, String, String):
   - contraseña: String
   - trabajos: Set<Trabajo>
   - idTrabajador: String
@@ -52,4 +46,3 @@ class Trabajador {
   + getContraseña(): String
 }
 @enduml
-```
