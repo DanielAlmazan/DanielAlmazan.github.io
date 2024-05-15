@@ -1,5 +1,59 @@
 # Trabajador
 
+## Model
+
+```plantuml
+@startuml
+!theme metal
+skinparam class {
+  BackgroundColor #012234-005b7b
+  HeaderBackgroundColor #012234
+}
+skinparam interface {
+  BackgroundColor #18181A
+}
+skinparam enum {
+  BackgroundColor #18181A
+}
+skinparam package {
+  BackgroundColor #18181A
+}
+skinparam DefaultFontColor white
+
+class Trabajador {
+  + Trabajador(String, String, String, String, String, String): 
+  + Trabajador(): 
+  + Trabajador(String, String, String, String, String, String, String\
+  ): 
+  - contraseña: String
+  - trabajos: Set<Trabajo>
+  - idTrabajador: String
+  - especialidad: String
+  - nombre: String
+  - email: String
+  - dni: String
+  - apellidos: String
+  + setDni(String): void
+  + setEspecialidad(String): void
+  + setTrabajos(Set<Trabajo>): void
+  + toString(): String
+  + setApellidos(String): void
+  + getEspecialidad(): String
+  + setContraseña(String): void
+  + getApellidos(): String
+  + getIdTrabajador(): String
+  + getEmail(): String
+  + setNombre(String): void
+  + setEmail(String): void
+  + getNombre(): String
+  + getTrabajos(): Set<Trabajo>
+  + getDni(): String
+  + setIdTrabajador(String): void
+  + getContraseña(): String
+}
+@enduml
+```
+
 ## GET /api/trabajadores
 > Returns all the workers in the database.  
 > If there are no workers, it will return an empty list.

@@ -6,6 +6,8 @@
     <build-profile instance="tasklynx-docs">
         <variables>
             <noindex-content>false</noindex-content>
+            <custom-favicons>favicon.svg</custom-favicons>
+            <header-logo>TaskLynx-logo-empty_dark.svg</header-logo>
         </variables>
     </build-profile>
 
