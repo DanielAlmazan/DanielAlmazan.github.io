@@ -14,7 +14,7 @@
 
 # TaskLynx / Nest Hotel – Docs
 
-![TaskLynx-logo-oval.svg](TaskLynx-logo-oval.svg)
+![TaskLynx-logo-oval.svg](TaskLynx-logo-oval.svg){width=300 border-effect="none"}
 
 ## Introduction
 

@@ -46,10 +46,10 @@
 
 <tabs>
     <tab title="Successfully worker added">
-        <img src="trabajadores-add-success.png"/>
+        <img width="600" border-effect="rounded" alt="Add success screenshot" src="trabajadores-add-success.png"/>
     </tab>
     <tab title="Error adding a worker">
-        <img src="trabajadores-add-error.png"/>
+        <img width="600" border-effect="rounded" alt="Add error screenshot" src="trabajadores-add-error.png"/>
     </tab>
 </tabs>
 
@@ -63,10 +63,10 @@
 
 <tabs>
     <tab title="Successfully worker edited">
-        <img src="trabajadores-edit-success.png"/>
+        <img width="600" border-effect="rounded" alt="Edit success screenshot" src="trabajadores-edit-success.png"/>
     </tab>
     <tab title="Error editing a worker">
-        <img src="trabajadores-edit-error.png"/>
+        <img width="600" border-effect="rounded" alt="Edit error screenshot" src="trabajadores-edit-error.png"/>
     </tab>
 </tabs>
 
@@ -80,10 +80,10 @@
 
 <tabs>
     <tab title="Successfully worker deleted">
-        <img src="trabajadores-delete-success.png"/>
+        <img width="600" border-effect="rounded" alt="Delete success screenshot" src="trabajadores-delete-success.png"/>
     </tab>
     <tab title="Error deleting a worker">
-        <img src="trabajadores-delete-error.png"/>
+        <img width="600" border-effect="rounded" alt="Delete error screenshot" src="trabajadores-delete-error.png"/>
     </tab>
 </tabs>
 

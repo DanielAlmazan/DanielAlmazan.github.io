@@ -16,7 +16,7 @@
 
 # API – Index
 
-![TaskLynx-API-oval-logo.svg](TaskLynx-API-oval-logo.svg){width=300}
+![TaskLynx-API-oval-logo.svg](TaskLynx-API-oval-logo.svg){width=300 border-effect="none"}
 
 ## Introduction
 
@@ -33,24 +33,6 @@
 
 ```plantuml
 @startuml
-
-!theme vibrant
-skinparam DefaultFontColor white
-skinparam ArrowFontColor black
-skinparam class {
-  BackgroundColor #012234-005b7b
-  HeaderBackgroundColor #012234
-}
-skinparam interface {
-  BackgroundColor #18181A
-}
-skinparam enum {
-  BackgroundColor #18181A
-}
-skinparam package {
-  BackgroundColor #18181A
-}
-
 entity "trabajador" as trabajador {
   dni: varchar(9)
   nombre: varchar(100)
@@ -79,69 +61,68 @@ trabajador ||--o{ trabajo : "tiene"
 ```plantuml
 @startuml
 
-!theme metal
 top to bottom direction
 skinparam linetype ortho
-skinparam DefaultFontColor white
-skinparam ArrowFontColor black
-skinparam class {
-  BackgroundColor #012234-005b7b
-  HeaderBackgroundColor #012234
-}
-skinparam interface {
-  BackgroundColor #18181A
-}
-skinparam enum {
-  BackgroundColor #18181A
-}
-skinparam package {
-  BackgroundColor #18181A
-}
 
 interface ITrabajadorDAO << interface >> {
-  + findByNameAndPass(String, String): Trabajador
+  + existsById(String): boolean
+  + findByIdTrabajadorAndContraseña(String, String): Trabajador
+  + existsByDni(String): boolean
+  + findBySpeciality(String): List<Trabajador>
+  + existsByEmail(String): boolean
 }
 interface ITrabajadorService << interface >> {
-  + findByNameAndPass(String, String): Trabajador
-  + delete(String): void
-  + findAll(): List<Trabajador>
-  + findById(String): Trabajador
   + save(Trabajador): Trabajador
+  + findById(String): Trabajador
+  + existsByEmail(String): boolean
+  + existsById(String): boolean
+  + findAll(): List<Trabajador>
+  + findByIdAndPass(String, String): Trabajador
+  + existsByDni(String): boolean
+  + delete(String): void
+  + findBySpeciality(String): List<Trabajador>
 }
 interface ITrabajoDAO << interface >> {
-  + findCompletadosPorTrabajadorEntreFechas
-        (String, LocalDate, LocalDate): List<Trabajo>
-  + findByIdTrabajadorIdTrabajadorAndFecFinIsNullAndPrioridad
-        (String, BigDecimal): List<Trabajo>
-  + findPendienteByTrabajador(String): List<Trabajo>
-  + findByIdAndUnassigned(String): Trabajo
-  + findByIdTrabajadorIdTrabajadorAndFecFinIsNullOrderByCategoria
-        (String): List<Trabajo>
   + findCompletaByTrabajador(String): List<Trabajo>
+  + findPendingByTrabajadorOrderByPrioridad(String): List<Trabajo>
+  + findTrabajadorByCodTrabajo(String): Trabajador
   + findByFecFinIsNotNull(): List<Trabajo>
-  + findByIdTrabajadorIsNull(): List<Trabajo>
+  + findPendienteByTrabajador(String): List<Trabajo>
   + findByFecFinIsNull(): List<Trabajo>
+  + findByIdTrabajadorIdTrabajadorAndFecFinIsLessThanEqual\
+(String, LocalDate): List<Trabajo>
+  + findByIdTrabajadorIsNull(): List<Trabajo>
+  + findAllByFecFinIsNotNull(): List<Trabajo>
+  + findAllByFecFinIsNull(): List<Trabajo>
+  + findCompletadosPorTrabajadorEntreFechas\
+(String, LocalDate, LocalDate): List<Trabajo>
+  + findPendingByTrabajadorAndPrioridad\
+(String, BigDecimal): List<Trabajo>
 }
 interface ITrabajoService << interface >> {
-  + findCompletadosPorTrabajadorEntreFechas
-        (String, LocalDate, LocalDate): List<Trabajo>
-  + findCompletadosPorTrabajador(String): List<Trabajo>
-  + findPendientesPorTrabajadorYPrioridad
-        (String, BigDecimal): List<Trabajo>
   + delete(String): void
-  + findTrabajosSinTrabajador(): List<Trabajo>
+  + asignarTrabajo(String, String): Trabajo
+  + findAll(): List<Trabajo>
+  + editarFechaFin(String, LocalDate): Trabajo
+  + findPendientesPorTrabajadorOrderByPrioridadAsc\
+(String): List<Trabajo>
+  + findCompletadosPorTrabajadorHastaFecha\
+(String, LocalDate): List<Trabajo>
+  + findPendientesPorTrabajadorYPrioridad\
+(String, BigDecimal): List<Trabajo>
+  + findPendientesPorTrabajador(String): List<Trabajo>
+  + findCompletados(): List<Trabajo>
+  + findTrabajadorByCodTrabajo(String): Trabajador
+  + findCompletadosPorTrabajador(String): List<Trabajo>
+  + crearTrabajoConTrabajador(Trabajo, String): Trabajo
   + editarTiempo(String, BigDecimal): Trabajo
   + findPendientes(): List<Trabajo>
-  + findCompletados(): List<Trabajo>
-  + findPendientesPorTrabajador(String): List<Trabajo>
   + finalizarTrabajo(String, LocalDate, BigDecimal): Trabajo
-  + findPendientesPorTrabajadorOrderByPrioridad(String): List<Trabajo>
-  + findAll(): List<Trabajo>
-  + save(Trabajo): Trabajo
-  + crearTrabajoConTrabajador(Trabajo, String): Trabajo
-  + editarFechaFin(String, LocalDate): Trabajo
   + findById(String): Trabajo
-  + asignarTrabajo(String, String): Trabajo
+  + save(Trabajo): Trabajo
+  + findCompletadosPorTrabajadorEntreFechas
+(String, LocalDate, LocalDate): List<Trabajo>
+  + findTrabajosSinTrabajador(): List<Trabajo>
 }
 class IndexController {
   + IndexController(): 
@@ -152,157 +133,231 @@ class TaskLynxSpringBootApplication {
   + main(String[]): void
   ~ hiddenHttpMethodFilter(): HiddenHttpMethodFilter
 }
+class TaskLynxSpringBootApplicationTests {
+  ~ TaskLynxSpringBootApplicationTests(): 
+  ~ contextLoads(): void
+}
 class Trabajador {
-  + Trabajador(): 
+  + Trabajador
+(String, String, String, String, String, String, String): 
   + Trabajador(String, String, String, String, String, String): 
+  + Trabajador(): 
   - idTrabajador: String
-  - nombre: String
+  - trabajos: Set<Trabajo>
   - apellidos: String
   - email: String
   - dni: String
-  - trabajos: Set<Trabajo>
   - especialidad: String
   - contraseña: String
-   apellidos: String
-   email: String
-   nombre: String
-   contraseña: String
-   idTrabajador: String
-   dni: String
-   especialidad: String
-   trabajos: Set<Trabajo>
+  - nombre: String
+  + getDni(): String
+  + getEspecialidad(): String
+  + setApellidos(String): void
+  + setIdTrabajador(String): void
+  + setEmail(String): void
+  + getContraseña(): String
+  + setEspecialidad(String): void
+  + getApellidos(): String
+  + setDni(String): void
+  + setContraseña(String): void
+  + setNombre(String): void
+  + setTrabajos(Set<Trabajo>): void
+  + toString(): String
+  + getNombre(): String
+  + getTrabajos(): Set<Trabajo>
+  + getIdTrabajador(): String
+  + getEmail(): String
 }
 class TrabajadorServices {
   + TrabajadorServices(): 
-  + findByNameAndPass(String, String): Trabajador
+  ~ trabajadorDAO: ITrabajadorDAO
+  + existsByDni(String): boolean
   + delete(String): void
+  + findBySpeciality(String): List<Trabajador>
+  + findByIdAndPass(String, String): Trabajador
+  + existsByEmail(String): boolean
   + findAll(): List<Trabajador>
   + findById(String): Trabajador
   + save(Trabajador): Trabajador
+  + existsById(String): boolean
 }
 class TrabajadoresController {
   + TrabajadoresController(): 
-  + indexOneTrabajos(String): ResponseEntity<?>
-  + indexOneTrabajosCompletados(String): ResponseEntity<?>
+  - trabajoService: ITrabajoService
+  - trabajadorService: ITrabajadorService
   + update(Trabajador, String, BindingResult): ResponseEntity<?>
-  - showErrors(BindingResult, Map<String, Object>): boolean
+  + indexAll(): ResponseEntity<?>
+  + indexByEspecialidad(String): ResponseEntity<?>
+  + indexOneTrabajosPendientesOrderByPrioridad
+(String): ResponseEntity<?>
+  + delete(String): ResponseEntity<?>
+  + indexOneTrabajos(String): ResponseEntity<?>
+  + indexOneByIdAndContraseña(String, String): ResponseEntity<?>
+  + indexOne(String): ResponseEntity<?>
+  + indexOneTrabajosCompletadosEntreFechas
+(String, LocalDate, LocalDate): ResponseEntity<?>
   + indexOneTrabajosPendientes(String): ResponseEntity<?>
   + create(Trabajador, BindingResult): ResponseEntity<?>
-  + indexAll(): ResponseEntity<?>
-  + indexOneByUsuarioAndContraseña(String, String): ResponseEntity<?>
-  + indexOne(String): ResponseEntity<?>
-  + delete(String): ResponseEntity<?>
+  - showErrors
+(BindingResult, Map<String, Object>, List<String>): boolean
+  + indexOneTrabajosPendientesByPrioridad
+(String, BigDecimal): ResponseEntity<?>
+}
+class TrabajadoresControllerIntegrationTest {
+  + TrabajadoresControllerIntegrationTest(): 
+  ~ URL: String
+  - restTemplate: TestRestTemplate
+  - newTrabajador: Trabajador
+  + deleteShouldSucceed(): void
+  + findAllShouldGetFour(): void
+  + updateShouldSucceed(): void
+  + updateShouldFail(): void
+  + findByIdShouldFail(): void
+  + findBySpecialityShouldGetOne(): void
+  + findByIdSucceeds(): void
+  + findAllShouldGetThree(): void
+  + findByIdAndPassShouldFail(): void
+  + createShouldSucceed(): void
+  + createShouldFail(): void
 }
 class TrabajadoresViewController {
   + TrabajadoresViewController(): 
-  + editarTrabajador(Model, String): String
-  + create(Trabajador, BindingResult, Model): ModelAndView
+  - trabajoServices: TrabajoServices
+  ~ trabajadorServices: TrabajadorServices
+  + indexTrabajadores(Model): String
   + verTrabajador(Model, String): String
   + anyadirTrabajador(Model): String
+  + create(Trabajador, BindingResult, Model): ModelAndView
   + edit(Trabajador, BindingResult, Model): ModelAndView
   + delete(String): ModelAndView
+  + editarTrabajador(Model, String): String
+  - dniDuplicated(Trabajador, ModelAndView, boolean): boolean
   - addAtributes(Model): void
-  + indexTrabajadores(Model): String
+  + processForm
+(Trabajador, BindingResult, Model, String): ModelAndView
+  - emailDuplicated(Trabajador, ModelAndView, boolean): boolean
 }
 class Trabajo {
   + Trabajo(): 
   - descripcion: String
+  - fecIni: LocalDate
+  - codTrabajo: String
+  - idTrabajador: Trabajador
   - prioridad: BigDecimal
   - fecFin: LocalDate
   - tiempo: BigDecimal
-  - codTrabajo: String
-  - fecIni: LocalDate
-  - idTrabajador: Trabajador
   - categoria: String
-   descripcion: String
-   prioridad: BigDecimal
-   idTrabajador: Trabajador
-   codTrabajo: String
-   tiempo: BigDecimal
-   fecIni: LocalDate
-   fecFin: LocalDate
-   categoria: String
+  + getPrioridad(): BigDecimal
+  + setFecIni(LocalDate): void
+  + getIdTrabajador(): Trabajador
+  + setCategoria(String): void
+  + setFecFin(LocalDate): void
+  + setPrioridad(BigDecimal): void
+  + getFecIni(): LocalDate
+  + setTiempo(BigDecimal): void
+  + getCategoria(): String
+  + setIdTrabajador(Trabajador): void
+  + getCodTrabajo(): String
+  + getTiempo(): BigDecimal
+  + toString(): String
+  + setDescripcion(String): void
+  + setCodTrabajo(String): void
+  + getDescripcion(): String
+  + getFecFin(): LocalDate
 }
 class TrabajoController {
   + TrabajoController(): 
-  + showById(String): ResponseEntity<?>
-  + delete(String): ResponseEntity<?>
-  + create(Trabajo, BindingResult): ResponseEntity<?>
+  - trabajoService: ITrabajoService
+  + editarFechaFin(String, LocalDate): ResponseEntity<?>
   + showAll(): ResponseEntity<?>
-  - checkErrors(BindingResult, Map<String, Object>): boolean
+  + showCompletados(): ResponseEntity<?>
   + update(Trabajo, String, BindingResult): ResponseEntity<?>
+  + showById(String): ResponseEntity<?>
+  + finalizarTrabajo(String, LocalDate, BigDecimal): ResponseEntity<?>
+  + showPendientes(): ResponseEntity<?>
+  + showSinTrabajador(): ResponseEntity<?>
+  + create(Trabajo, BindingResult): ResponseEntity<?>
+  + showTrabajadorByCodTrabajo(String): ResponseEntity<?>
+  - checkErrors
+(BindingResult, Map<String, Object>, List<String>): boolean
+  + asignarTrabajo(String, String): ResponseEntity<?>
+  + editarTiempo(String, BigDecimal): ResponseEntity<?>
+  + delete(String): ResponseEntity<?>
 }
 class TrabajoServices {
   + TrabajoServices(): 
-  + findPendientesPorTrabajadorOrderByPrioridad(String): List<Trabajo>
-  + findPendientesPorTrabajadorYPrioridad
-        (String, BigDecimal): List<Trabajo>
-  + findCompletadosPorTrabajadorEntreFechas
-        (String, LocalDate, LocalDate): List<Trabajo>
-  + findCompletadosPorTrabajador(String): List<Trabajo>
-  + editarTiempo(String, BigDecimal): Trabajo
-  + findAll(): List<Trabajo>
-  + findTrabajosSinTrabajador(): List<Trabajo>
-  + crearTrabajoConTrabajador(Trabajo, String): Trabajo
-  + asignarTrabajo(String, String): Trabajo
-  + findCompletados(): List<Trabajo>
-  + finalizarTrabajo(String, LocalDate, BigDecimal): Trabajo
-  + delete(String): void
-  - validateDate(Trabajo, LocalDate): LocalDate
-  + findPendientes(): List<Trabajo>
-  + save(Trabajo): Trabajo
-  + editarFechaFin(String, LocalDate): Trabajo
+  ~ trabajoDAO: ITrabajoDAO
+  ~ trabajadorDAO: ITrabajadorDAO
   + findById(String): Trabajo
-  - validateTime(BigDecimal, BigDecimal): BigDecimal
+  + findTrabajadorByCodTrabajo(String): Trabajador
+  + findCompletadosPorTrabajadorHastaFecha
+(String, LocalDate): List<Trabajo>
+  + findAll(): List<Trabajo>
+  + editarFechaFin(String, LocalDate): Trabajo
+  + findPendientes(): List<Trabajo>
+  + findCompletadosPorTrabajadorEntreFechas
+(String, LocalDate, LocalDate): List<Trabajo>
+  + save(Trabajo): Trabajo
+  + findCompletadosPorTrabajador(String): List<Trabajo>
   + findPendientesPorTrabajador(String): List<Trabajo>
+  + crearTrabajoConTrabajador(Trabajo, String): Trabajo
+  - validateDate(Trabajo, LocalDate): LocalDate
+  + findPendientesPorTrabajadorYPrioridad
+(String, BigDecimal): List<Trabajo>
+  + findCompletados(): List<Trabajo>
+  + delete(String): void
+  + asignarTrabajo(String, String): Trabajo
+  + finalizarTrabajo(String, LocalDate, BigDecimal): Trabajo
+  + editarTiempo(String, BigDecimal): Trabajo
+  + findTrabajosSinTrabajador(): List<Trabajo>
+  - validateTime(BigDecimal, BigDecimal): BigDecimal
+  + findPendientesPorTrabajadorOrderByPrioridadAsc\
+(String): List<Trabajo>
 }
 class TrabajoViewController {
   + TrabajoViewController(): 
-  + createTrabajo(Trabajo, BindingResult, Model): ModelAndView
+  ~ trabajoServices: TrabajoServices
+  ~ trabajadorServices: TrabajadorServices
+  + nuevoTrabajo(Model): String
   + indexTrabajos(Model): String
   + editarTrabajo(Model, String): String
-  + nuevoTrabajo(Model): String
+  - editTrabajo(Trabajo, BindingResult): ModelAndView
+  + delete(String): ModelAndView
+  + processForm(Trabajo, BindingResult, String): ModelAndView
+  + verTrabajo(Model, String): String
+  - createTrabajo(Trabajo, BindingResult): ModelAndView
 }
 
-Trabajador                  "1" *-[#000000,plain]->\
- "trabajos\n*" Trabajo
- 
-TrabajadorServices          "1" *-[#000000,plain]->\
- "trabajadorDAO\n1" ITrabajadorDAO
- 
-TrabajadorServices           -[#008200,dashed]-^ \
- ITrabajadorService
- 
-TrabajadoresController      "1" *-[#000000,plain]->\
- "trabajadorService\n1" ITrabajadorService
- 
-TrabajadoresController      "1" *-[#000000,plain]->\
- "trabajoService\n1" ITrabajoService
- 
-TrabajadoresViewController  "1" *-[#000000,plain]->\
- "trabajadorServices\n1" TrabajadorServices
- 
-Trabajo                     "1" *-[#000000,plain]->\
- "idTrabajador\n1" Trabajador
- 
-TrabajoController           "1" *-[#000000,plain]->\
- "trabajoService\n1" ITrabajoService
- 
-TrabajoServices             "1" *-[#000000,plain]->\
- "trabajadorDAO\n1" ITrabajadorDAO
- 
-TrabajoServices             "1" *-[#000000,plain]->\
- "trabajoDAO\n1" ITrabajoDAO
- 
-TrabajoServices              -[#008200,dashed]-^\
-  ITrabajoService
-  
-TrabajoViewController       "1" *-[#000000,plain]-> \
-"trabajadorServices\n1" TrabajadorServices
-
-TrabajoViewController       "1" *-[#000000,plain]-> \
-"trabajoServices\n1" TrabajoServices
-
+Trabajador                            "1" *-[#595959,plain]-> \
+"trabajos\n*" Trabajo                               
+TrabajadorServices                    "1" *-[#595959,plain]-> \
+"trabajadorDAO\n1" ITrabajadorDAO                        
+TrabajadorServices                     -[#008200,dashed]-^  \
+ITrabajadorService                    
+TrabajadoresController                "1" *-[#595959,plain]-> \
+"trabajadorService\n1" ITrabajadorService                    
+TrabajadoresController                "1" *-[#595959,plain]-> \
+"trabajoService\n1" ITrabajoService                       
+TrabajadoresControllerIntegrationTest "1" *-[#595959,plain]-> \
+"newTrabajador\n1" Trabajador                            
+TrabajadoresViewController            "1" *-[#595959,plain]-> \
+"trabajadorServices\n1" TrabajadorServices                    
+TrabajadoresViewController            "1" *-[#595959,plain]-> \
+"trabajoServices\n1" TrabajoServices                       
+Trabajo                               "1" *-[#595959,plain]-> \
+"idTrabajador\n1" Trabajador                            
+TrabajoController                     "1" *-[#595959,plain]-> \
+"trabajoService\n1" ITrabajoService                       
+TrabajoServices                       "1" *-[#595959,plain]-> \
+"trabajadorDAO\n1" ITrabajadorDAO                        
+TrabajoServices                       "1" *-[#595959,plain]-> \
+"trabajoDAO\n1" ITrabajoDAO                           
+TrabajoServices                        -[#008200,dashed]-^  \
+ITrabajoService                       
+TrabajoViewController                 "1" *-[#595959,plain]-> \
+"trabajadorServices\n1" TrabajadorServices                    
+TrabajoViewController                 "1" *-[#595959,plain]-> \
+"trabajoServices\n1" TrabajoServices                       
 @enduml
 ```
 
@@ -310,18 +365,18 @@ TrabajoViewController       "1" *-[#000000,plain]-> \
 
 ### TRABAJADOR CRUD:
 
-![Aitor Moreno Iborra](https://avatars.githubusercontent.com/u/119342012?v=4) {width="80"}
+![Aitor Moreno Iborra](https://avatars.githubusercontent.com/u/119342012?v=4){width=80 border-effect="none"}
 
 [Aitor Moreno Iborra][LtVish]
 
 ### TRABAJO CRUD:
 
-![Miguel Collado](https://avatars.githubusercontent.com/u/114687157?v=4) {width="80"}
+![Miguel Collado](https://avatars.githubusercontent.com/u/114687157?v=4){width=80 border-effect="none"}
 
 [Miguel Collado][MiguelColl]
 
 ### API Development:
 
-![Daniel Enrique Almazán Sellés](https://avatars.githubusercontent.com/u/114589538?v=4) {width="80"}
+![Daniel Enrique Almazán Sellés](https://avatars.githubusercontent.com/u/114589538?v=4){width=80 border-effect="none"}
 
 [Daniel Enrique Almazán Sellés][DanielAlmazan]
