@@ -1,4 +1,4 @@
 # Mobile – Index
 
-![TskLynx-mobile-oval-logo.svg](TskLynx-mobile-oval-logo.svg){width="300"}
+![TskLynx-mobile-oval-logo.svg](TskLynx-mobile-oval-logo.svg){width=300 border-effect="none"}
 
