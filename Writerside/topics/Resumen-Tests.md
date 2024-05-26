@@ -34,6 +34,23 @@ Para ello, se ha utilizado axios.
 10. Ejecutar todos los tests (executeTests):
     - Ejecuta todos los tests anteriores en secuencia y cuenta cuántos tests fueron exitosos y cuántos fallaron, mostrando el resultado final.
 
-A día de hoy, todos los tests han sido exitosos.
+```Bash
+node test/axios/axiosTests.
+```
+```Ini
+OK - Inserción de limpieza sin login
+OK - Actualización de limpieza sin login
+OK - Login incorrecto
+OK - Login correcto
+OK - Inserción de limpieza con login
+OK - Actualización de limpieza con login
+OK - Habitaciones limpiadas hoy
+OK - Limpiezas de habitación
+OK - Habitación limpia
+OK - Habitación sucia
+Tests finalizados
+Tests exitosos: 10
+Tests fallidos: 0
+```
 
 Para más detalles, visitar el [Hotel Nest](https://github.com/DanielAlmazan/hotel-nest/tree/main) en GitHub.
