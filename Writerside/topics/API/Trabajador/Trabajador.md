@@ -596,6 +596,56 @@ class Trabajador {
     </tab>
 </tabs>
 
+## GET `BASE`/sintrabajospendientes
+> Returns a list of all workers that don't have any pending task.  
+> If there is any worker without pending tasks, returns an empty list.
+
+<tabs>
+    <tab title="200 – Results">
+        <tip>
+            /api/trabajadores/sintrabajospendientes
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "result": [
+                {
+                  "idTrabajador": "T002",
+                  "dni": "12341234R",
+                  "nombre": "Ana",
+                  "apellidos": "Gómez",
+                  "especialidad": "Carpintería",
+                  "contraseña": "12341234",
+                  "email": "ana@gomez.com"
+                },
+                {
+                  "idTrabajador": "T005",
+                  "dni": "12345699A",
+                  "nombre": "Pepe",
+                  "apellidos": "García",
+                  "especialidad": "Fontaneria",
+                  "contraseña": "123",
+                  "email": "111@ergerg.com"
+                },
+              ],
+              "error": false
+            }
+        </code-block>
+    </tab>
+    <tab title="200 – Empty">
+        <tip>
+            /api/trabajadores/sintrabajospendientes
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "result": [],
+              "error": false
+            }
+        </code-block>
+    </tab>
+</tabs>
+
 ## GET `BASE`/:id/trabajos/pendientes
 
 > Returns a list of all the pending tasks of a worker by its ID.
@@ -865,9 +915,8 @@ class Trabajador {
 > Accepts two optional query parameters: `fechaIni` and `fechaFin`
 {style=note}
 
-> Returns a list of all the completed tasks of a worker by its ID.
-> If the worker has no completed tasks, it will return an empty list.
-> If 
+> Returns a list of all the completed tasks of a worker by its ID.  
+> If the worker has no completed tasks, it will return an empty list.  
 > If the worker does not exist, it will return an error message.
 
 <tabs>

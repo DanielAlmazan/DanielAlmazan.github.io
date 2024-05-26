@@ -571,29 +571,72 @@ class Trabajo {
 
 ## GET `BASE`/completados
 
-> Returns all the tasks that are completed.
+> Accepts two optional query parameters: `fechaIni` and `fechaFin`
+{style=note}
+
+> Returns a list of all the completed tasks.  
 > If there are no completed tasks, it will return an empty list.
 
 <tabs>
-    <tab title="200 – Results">
+    <tab title="200 – No param | Results">
+        <tip>
+            /api/trabajos/completados
+        </tip>
+        <br/>
         <code-block lang="json">
             {
               "result": [
                 {
-                  "codTrabajo": "J799",
-                  "categoria": "Espacio-Tiempo",
-                  "descripcion": "Conseguir ropa",
-                  "fecIni": "2029-10-20",
-                  "fecFin": "1984-10-20",
-                  "tiempo": -999.9,
+                  "codTrabajo": "J001",
+                  "categoria": "Mantemimiento",
+                  "descripcion": "Reparar aire acondicionado",
+                  "fecIni": "1999-07-22",
+                  "fecFin": "2030-10-20",
+                  "tiempo": 120,
                   "idTrabajador": {
-                    "idTrabajador": "T800",
-                    "dni": "80080080T",
-                    "nombre": "Arnaldo",
-                    "apellidos": "Charcheneguer",
-                    "especialidad": "Espacio-Tiempo",
-                    "contraseña": "Dame tu ropa",
-                    "email": "sayonara@volvere.com"
+                    "idTrabajador": "T351",
+                    "dni": "98986572M",
+                    "nombre": "Alex",
+                    "apellidos": "Cremento",
+                    "especialidad": "Fontanería",
+                    "contraseña": "Contraseña",
+                    "email": "alex@cremento.com"
+                  },
+                  "prioridad": 2
+                },
+                {
+                  "codTrabajo": "J025",
+                  "categoria": "Limpieza",
+                  "descripcion": "Limpiar los frenazos de los wateres",
+                  "fecIni": "2022-05-25",
+                  "fecFin": "2024-01-07",
+                  "tiempo": 25,
+                  "idTrabajador": {
+                    "idTrabajador": T001",
+                    "dni": "12312312A",
+                    "nombre": "Dolores",
+                    "apellidos": "Crotal",
+                    "especialidad": "Limpieza",
+                    "contraseña": "LaChachaMasVivaracha",
+                    "email": "dolores@crotal.com"
+                  },
+                  "prioridad": 4
+                },
+                {
+                  "codTrabajo": "J555",
+                  "categoria": "Carpintería",
+                  "descripcion": "Construir una cruz para mi amigo Yisus",
+                  "fecIni": "0-12-24",
+                  "fecFin": "2025-12-25",
+                  "tiempo": 300,
+                  "idTrabajador": {
+                    "idTrabajador": "T001",
+                    "dni": "12341234R",
+                    "nombre": "Gepeto",
+                    "apellidos": "ElDePinocho",
+                    "especialidad": "Carpintería",
+                    "contraseña": "IMRI",
+                    "email": "condoscoj@clavos.com"
                   },
                   "prioridad": 2
                 }
@@ -602,10 +645,143 @@ class Trabajo {
             }
         </code-block>
     </tab>
-    <tab title="200 – Empty">
+    <tab title="200 – No param | Empty">
+        <tip>
+            /api/trabajos/completados
+        </tip>
+        <br/>
         <code-block lang="json">
             {
               "result": [],
+              "error": false
+            }
+        </code-block>
+    </tab>
+    <tab title="200 – FechaIni | Results">
+        <tip>
+            /api/trabajos/completados?fechaIni=1995-01-08
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "result": [
+                {
+                  "codTrabajo": "J001",
+                  "categoria": "Mantemimiento",
+                  "descripcion": "Reparar aire acondicionado",
+                  "fecIni": "1999-07-22",
+                  "fecFin": "2030-10-20",
+                  "tiempo": 120,
+                  "idTrabajador": {
+                    "idTrabajador": "T351",
+                    "dni": "98986572M",
+                    "nombre": "Alex",
+                    "apellidos": "Cremento",
+                    "especialidad": "Fontanería",
+                    "contraseña": "Contraseña",
+                    "email": "alex@cremento.com"
+                  },
+                  "prioridad": 2
+                },
+                {
+                  "codTrabajo": "J025",
+                  "categoria": "Limpieza",
+                  "descripcion": "Limpiar los frenazos de los wateres",
+                  "fecIni": "2022-05-25",
+                  "fecFin": "2024-01-07",
+                  "tiempo": 25,
+                  "idTrabajador": {
+                    "idTrabajador": T001",
+                    "dni": "12312312A",
+                    "nombre": "Dolores",
+                    "apellidos": "Crotal",
+                    "especialidad": "Limpieza",
+                    "contraseña": "LaChachaMasVivaracha",
+                    "email": "dolores@crotal.com"
+                  },
+                  "prioridad": 4
+                },
+              ],
+              "error": false
+            }
+        </code-block>
+    </tab>
+    <tab title="200 – FechaFin | Results">
+        <tip>
+            /api/trabajos/completados?fechaFin=2027-09-15
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "result": [
+                {
+                  "codTrabajo": "J025",
+                  "categoria": "Limpieza",
+                  "descripcion": "Limpiar los frenazos de los wateres",
+                  "fecIni": "2022-05-25",
+                  "fecFin": "2024-01-07",
+                  "tiempo": 25,
+                  "idTrabajador": {
+                    "idTrabajador": T001",
+                    "dni": "12312312A",
+                    "nombre": "Dolores",
+                    "apellidos": "Crotal",
+                    "especialidad": "Limpieza",
+                    "contraseña": "LaChachaMasVivaracha",
+                    "email": "dolores@crotal.com"
+                  },
+                  "prioridad": 4
+                },
+                {
+                  "codTrabajo": "J555",
+                  "categoria": "Carpintería",
+                  "descripcion": "Construir una cruz para mi amigo Yisus",
+                  "fecIni": "0-12-24",
+                  "fecFin": "2025-12-25",
+                  "tiempo": 300,
+                  "idTrabajador": {
+                    "idTrabajador": "T001",
+                    "dni": "12341234R",
+                    "nombre": "Gepeto",
+                    "apellidos": "ElDePinocho",
+                    "especialidad": "Carpintería",
+                    "contraseña": "IMRI",
+                    "email": "condoscoj@clavos.com"
+                  },
+                  "prioridad": 2
+                }
+              ],
+              "error": false
+            }
+        </code-block>
+    </tab>
+    <tab title="200 – FechaIni + FechaFin | Results">
+        <tip>
+            /api/trabajos/completados?fechaIni=2020-01-01&fechaFin=2024-12-31
+        </tip>
+        <br/>
+        <code-block lang="json">
+            {
+              "result": [
+                {
+                  "codTrabajo": "J025",
+                  "categoria": "Limpieza",
+                  "descripcion": "Limpiar los frenazos de los wateres",
+                  "fecIni": "2022-05-25",
+                  "fecFin": "2024-01-07",
+                  "tiempo": 25,
+                  "idTrabajador": {
+                    "idTrabajador": T001",
+                    "dni": "12312312A",
+                    "nombre": "Dolores",
+                    "apellidos": "Crotal",
+                    "especialidad": "Limpieza",
+                    "contraseña": "LaChachaMasVivaracha",
+                    "email": "dolores@crotal.com"
+                  },
+                  "prioridad": 4
+                },
+              ],
               "error": false
             }
         </code-block>
