@@ -40,7 +40,9 @@ class Trabajador {
 @enduml
 ```
 
-## GET /api/trabajadores
+**`BASE`**: /api/trabajadores
+
+## GET `BASE`
 
 > Returns all the workers in the database.  
 > If there are no workers, it will return an empty list.
@@ -85,7 +87,7 @@ class Trabajador {
 
 ***
 
-## GET /api/trabajadores/:id
+## GET `BASE`/:id
 
 > Returns a worker by its ID.  
 > If the worker does not exist, it will return an error message.
@@ -128,7 +130,7 @@ class Trabajador {
 
 ***
 
-## POST /api/trabajadores
+## POST `BASE`
 
 > Create a new worker in the database. Returns the worker created.  
 > If there are any errors, it will return an error message with the list of errors.  
@@ -231,7 +233,7 @@ class Trabajador {
 
 ***
 
-## PUT /api/trabajadores/:id
+## PUT `BASE`/:id
 
 > Update a worker by its ID. Returns the worker updated.  
 > If the worker does not exist, it will return an error message.  
@@ -342,7 +344,7 @@ class Trabajador {
 
 ***
 
-## DELETE /api/trabajadores/:id
+## DELETE `BASE`/:id
 
 > Delete a worker by its ID. Returns a response without errors.  
 > If the worker does not exist, it will return an error message.
@@ -375,7 +377,7 @@ class Trabajador {
 
 ***
 
-## GET /api/trabajadores/:id/:contraseña
+## GET `BASE`/:id/:contraseña
 
 > Returns the pending tasks of a worker by its ID and password.
 > If the worker does not exist, it will return an error message.
@@ -470,7 +472,7 @@ class Trabajador {
     </tab>
 </tabs>
 
-## GET /api/trabajadores/especialidad/:especialidad
+## GET `BASE`/especialidad/:especialidad
 
 > Returns all the workers with a specific specialty. If there are no workers with that specialty, 
 > it will return an empty list.
@@ -512,7 +514,7 @@ class Trabajador {
     </tab>
 </tabs>
 
-## GET /api/trabajadores/:id/trabajos
+## GET `BASE`/:id/trabajos
 
 > Returns a list of all the tasks of a worker by its ID.  
 > If the worker has no tasks, it will return an empty list.  
@@ -594,7 +596,7 @@ class Trabajador {
     </tab>
 </tabs>
 
-## GET /api/trabajadores/:id/trabajos/pendientes
+## GET `BASE`/:id/trabajos/pendientes
 
 > Returns a list of all the pending tasks of a worker by its ID.
 > If the worker has no pending tasks, it will return an empty list.
@@ -694,7 +696,7 @@ class Trabajador {
     </tab>
 </tabs>
 
-## GET /api/trabajadores/:id/trabajos/pendientes/prioridad
+## GET `BASE`/:id/trabajos/pendientes/prioridad
 
 > Returns an ascendant sorted list of all the pending tasks of a worker by its ID.
 > If the worker has no pending tasks, it will return an empty list.
@@ -794,7 +796,7 @@ class Trabajador {
     </tab>
 </tabs>
 
-## GET /api/trabajadores/:id/trabajos/pendientes/:prioridad {id="get-api-trabajadores-id-trabajos-pendientes-prioridad_1"}
+## GET `BASE`/:id/trabajos/pendientes/:prioridad {id="get-api-trabajadores-id-trabajos-pendientes-prioridad_1"}
 
 > Returns a list of all the pending tasks of a worker by its ID and the specified priority.
 > If the worker has no pending tasks, it will return an empty list.
@@ -858,7 +860,7 @@ class Trabajador {
     </tab>
 </tabs>
 
-## GET /api/trabajadores/:id/trabajos/completados
+## GET `BASE`/:id/trabajos/completados
 
 > Accepts two optional query parameters: `fechaIni` and `fechaFin`
 {style=note}
