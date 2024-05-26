@@ -37,7 +37,7 @@ class Trabajo {
 
 **`BASE`**: /api/trabajos
 
-## GET `{{BASE}}`
+## GET `BASE`
 
 > Returns all the tasks in the database.  
 > If there are no tasks, it will return an empty list.
@@ -111,7 +111,7 @@ class Trabajo {
 
 ***
 
-## GET `{{BASE}}`/:id
+## GET `BASE`/:id
 
 > Returns a task by its ID.  
 > If the task does not exist, it will return an error message.
@@ -154,7 +154,7 @@ class Trabajo {
 
 ***
 
-## POST `{{BASE}}`
+## POST `BASE`
 
 > Create a new task in the database and returns the task created.  
 > If there are any errors, it will return an error message with the list of errors.  
@@ -295,7 +295,7 @@ class Trabajo {
 
 ***
 
-## PUT `{{BASE}}`/:id
+## PUT `BASE`/:id
 
 > Update a task by its ID and returns the task updated.  
 > If the worker does not exist, it will return an error message.  
@@ -384,7 +384,7 @@ class Trabajo {
 
 ***
 
-## DELETE `{{BASE}}`/:id
+## DELETE `BASE`/:id
 
 > Delete a task by its ID. Returns a response without errors.  
 > If the task does not exist, it will return an error message.
@@ -417,7 +417,7 @@ class Trabajo {
 
 ***
 
-## GET `{{BASE}}`/pendientes
+## GET `BASE`/pendientes
 
 > Returns all the tasks that are pending.
 > If there are no pending tasks, it will return an empty list.
@@ -524,7 +524,7 @@ class Trabajo {
     </tab>
 </tabs>
 
-## GET `{{BASE}}`/sinTrabajador
+## GET `BASE`/sinTrabajador
 
 > Returns all the tasks that are pending and have no worker assigned.
 > If there are no pending tasks without a worker assigned, it will return an empty list.
@@ -569,7 +569,7 @@ class Trabajo {
     </tab>
 </tabs>
 
-## GET `{{BASE}}`/completados
+## GET `BASE`/completados
 
 > Returns all the tasks that are completed.
 > If there are no completed tasks, it will return an empty list.
@@ -612,7 +612,7 @@ class Trabajo {
     </tab>
 </tabs>
 
-## GET `{{BASE}}`/:id/trabajador
+## GET `BASE`/:id/trabajador
 
 > This endpoint is not necessary since the worker is already included in the task object, but
 > it doesn't hurt anyone.{style=warning}
@@ -648,7 +648,7 @@ class Trabajo {
     </tab>
 </tabs>
 
-## PUT `{{BASE}}`/asignar/:codTrabajo/:idTrabajador
+## PUT `BASE`/asignar/:codTrabajo/:idTrabajador
 
 > Assigns a worker to a task by their IDs.  
 > If the task does not exist, it will return an error message.
@@ -723,7 +723,7 @@ class Trabajo {
     </tab>
 </tabs>
 
-## PUT `{{BASE}}`/finalizar/:id
+## PUT `BASE`/finalizar/:id
 
 > Accepts from 1 to 3 parameters:
 > - id (@PathVariable) (required): task ID
@@ -948,12 +948,12 @@ class Trabajo {
     </tab>
 </tabs>
 
-## PUT `{{BASE}}`/editarFechaFin/:id
+## PUT `BASE`/editarFechaFin/:id
 
-> This endpoint is necessary, as simple PUT `{{BASE}}`/:id does not check anything, and 
-> PUT `{{BASE}}`/finalizar/:id will calculate `tiempo` when it's not provided. {style=warning}
+> This endpoint is necessary, as simple PUT `BASE`/:id does not check anything, and 
+> PUT `BASE`/finalizar/:id will calculate `tiempo` when it's not provided. {style=warning}
 
-> Same as PUT `{{BASE}}`/finalizar/:id but only for the completion date.
+> Same as PUT `BASE`/finalizar/:id but only for the completion date.
 
 <tabs>
     <tab title="200 – Acceptable date">
@@ -1040,12 +1040,12 @@ class Trabajo {
     </tab>
 </tabs>
 
-## PUT `{{BASE}}`/editarTiempo/:id
+## PUT `BASE`/editarTiempo/:id
 
-> This endpoint is necessary, as simple PUT `{{BASE}}`/:id does not check anything, and
-> PUT `{{BASE}}`/finalizar/:id will assume today's date when `fec_fin` is not provided. {style=warning}
+> This endpoint is necessary, as simple PUT `BASE`/:id does not check anything, and
+> PUT `BASE`/finalizar/:id will assume today's date when `fec_fin` is not provided. {style=warning}
 
-> Same as PUT `{{BASE}}`/finalizar/:id but only for the duration of the task.
+> Same as PUT `BASE`/finalizar/:id but only for the duration of the task.
 > Also checks that `fec_fin` is not null
 
 <tabs>

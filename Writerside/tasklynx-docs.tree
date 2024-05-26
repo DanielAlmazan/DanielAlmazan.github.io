@@ -30,6 +30,8 @@
         </toc-element>
 
         <toc-element topic="Nest-Hotel-Index.md">
+            <toc-element topic="Despliegue-Gestion_Hotelera.md"/>
+            <toc-element topic="Despliegue-Hotel_Nest.md"/>
 
         </toc-element>
 
